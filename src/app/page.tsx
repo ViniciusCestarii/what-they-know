@@ -36,7 +36,7 @@ const Home = async () => {
     return <div>Failed to get IP info</div>
   }
 
-  return 'teste'
+  return `https://ipinfo.io/widget/demo/${userIpInfo.ip}`
 
   const userIpDetailsRequest = await fetch(
     `https://ipinfo.io/widget/demo/${userIpInfo.ip}`,
