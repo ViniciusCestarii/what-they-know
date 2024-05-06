@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic'
 import Badge from '@/components/ui/Badge'
 import ConfidenceBar from '@/components/ui/ConfidenceBar'
 import Card from '@/components/ui/Card'
+import Image from 'next/image'
 
 const LeafletMap = dynamic(() => import('@/components/ui/Map'), {
   ssr: false,
@@ -68,6 +69,16 @@ const Home = async () => {
           <li>ASN Domain: {userIpInfoDetails.data.asn.domain}</li>
           <li>ASN Route: {userIpInfoDetails.data.asn.route}</li>
           <li>ASN Type: {userIpInfoDetails.data.asn.type}</li>
+          <li>Vpn: {userIpInfoDetails.data.privacy.vpn ? 'True' : 'False'}</li>
+          {userIpInfoDetails.data.privacy.vpn && (
+            <Image
+              className="rounded-full mx-auto max-w-60 max-h-60"
+              src="/vpn.jpeg"
+              width={1024}
+              height={1024}
+              alt="lock representing vpn"
+            />
+          )}
         </ul>
       </section>
       <section className="flex flex-col">
