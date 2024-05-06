@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className=" flex flex-col bg-background p-4 text-primary max-w-default mx-auto">
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   )

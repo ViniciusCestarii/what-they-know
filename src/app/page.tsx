@@ -10,6 +10,7 @@ import Image from 'next/image'
 
 const LeafletMap = dynamic(() => import('@/components/ui/Map'), {
   ssr: false,
+  loading: () => <Card className="h-[410px] p-1" />,
 })
 
 const Home = async () => {
@@ -36,7 +37,7 @@ const Home = async () => {
   const userIpInfoDetails: IpDetails = await userIpDetailsRequest.json()
 
   return (
-    <main className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <h1>What they know about you</h1>
       <section className="flex flex-col">
         <h2>Where you are</h2>
@@ -136,7 +137,7 @@ const Home = async () => {
           </div>
         </Card>
       </div>
-    </main>
+    </div>
   )
 }
 
