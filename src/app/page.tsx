@@ -28,7 +28,7 @@ const Home = async () => {
   const userIpInfoDetails: IpDetails = await userIpDetailsRequest.json();
 
   return (
-    <main className="flex min-h-screen flex-col items-center gap-4 p-24">
+    <main className="min-h-screen flex flex-col gap-4">
       <h1>What they know about you</h1>
       <section className="flex flex-col">
         <h2>Where you are</h2>
@@ -70,6 +70,39 @@ const Home = async () => {
           <li>{userCompanyInfo.company.phone}</li>
         </ul>
       </section>
+      {/* style prototype */}
+      <div className="flex min-h-screen items-center justify-center bg-gray-900 p-4 text-green-500">
+      <div className="w-full max-w-md rounded-lg border border-green-500 p-6">
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-bold">User Profile</h1>
+            <div className="rounded-full bg-green-500 px-3 py-1 text-xs font-bold text-gray-900">ID: 12345</div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <div className="text-sm font-bold">Name</div>
+              <div className="text-lg">John Doe</div>
+            </div>
+            <div>
+              <div className="text-sm font-bold">Email</div>
+              <div className="text-lg">john.doe@example.com</div>
+            </div>
+            <div>
+              <div className="text-sm font-bold">Phone</div>
+              <div className="text-lg">+1 (555) 555-5555</div>
+            </div>
+            <div>
+              <div className="text-sm font-bold">Address</div>
+              <div className="text-lg">123 Main St, Anytown USA</div>
+            </div>
+          </div>
+          <div className="flex justify-between">
+            <div className="text-sm font-bold">Joined</div>
+            <div className="text-lg">2023-04-01</div>
+          </div>
+        </div>
+      </div>
+    </div>
     </main>
   );
 }

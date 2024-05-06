@@ -24,7 +24,7 @@ const LeafletMap = ({lat, lng}: LeafletMapProps) => {
   return (
     <MapContainer
       center={center}
-      zoom={12}
+      zoom={16}
       style={{ height: '400px', width: '100%', maxWidth:"100%" }}
     >
       <TileLayer
