@@ -1,4 +1,5 @@
 import { Confidence } from '@/types/companyTypes'
+import cn from '@/utils/cn'
 import React from 'react'
 
 interface ConfidenceBarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -18,13 +19,17 @@ const getLevel = (confidence: Confidence): number => {
   }
 }
 
-const ConfidenceBar = ({ confidence, ...props }: ConfidenceBarProps) => {
+const ConfidenceBar = ({
+  confidence,
+  className,
+  ...props
+}: ConfidenceBarProps) => {
   const level = getLevel(confidence)
 
   return (
     <span
       {...props}
-      className={`flex gap-1 ${props.className} text-sm items-center`}
+      className={cn('flex gap-1 text-sm items-center', className)}
     >
       Confidence:
       {Array.from({ length: 4 }).map((_, i) => (

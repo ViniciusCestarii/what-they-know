@@ -35,7 +35,7 @@ const Home = async () => {
   const userIpInfoDetails: IpDetails = await userIpDetailsRequest.json()
 
   return (
-    <main className="min-h-screen flex flex-col gap-4">
+    <main className="flex flex-col gap-4">
       <h1>What they know about you</h1>
       <section className="flex flex-col">
         <h2>Where you are</h2>
