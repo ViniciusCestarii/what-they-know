@@ -24,7 +24,9 @@ const Home = async () => {
       Accept: 'application/json',
     },
   })
+  console.log(response)
   const userIpInfo = await response.json()
+  console.log(userIpInfo)
   const userIpDetailsRequest = await fetch(
     `https://ipinfo.io/widget/demo/${userIpInfo.ip}`,
   )
