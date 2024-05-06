@@ -3,8 +3,11 @@ import { IpDetails } from "@/types/ipDetailsTypes";
 import { env } from "@/utils/env";
 import Link from "next/link";
 import dynamic from 'next/dynamic';
+import Badge from "@/components/ui/Badge";
+import ConfidenceBar from "@/components/ui/ConfidenceBar";
+import Card from "@/components/ui/Card";
 
-const LeafletMap = dynamic(() => import('@/components/Map'), {
+const LeafletMap = dynamic(() => import('@/components/ui/Map'), {
   ssr: false 
 });
 
@@ -32,7 +35,7 @@ const Home = async () => {
       <h1>What they know about you</h1>
       <section className="flex flex-col">
         <h2>Where you are</h2>
-        <small className="ml-auto">confidence High</small>
+        <ConfidenceBar confidence="Very High" className="ml-auto" />
         <LeafletMap lat={parseFloat(userIpInfo.loc.split(",")[0])} lng={parseFloat(userIpInfo.loc.split(",")[1])} />
         <ul>
           <li>City: {userIpInfo.city}</li>
@@ -43,7 +46,7 @@ const Home = async () => {
       </section>
       <section className="flex flex-col">
         <h2>How you are browsing</h2>
-        <small className="ml-auto">confidence High</small>
+        <ConfidenceBar confidence="Very High" className="ml-auto" />
         <ul>
           <li>IP: {userIpInfo.ip}</li>
           <li>Hostname: {userIpInfo.hostname}</li>
@@ -61,7 +64,7 @@ const Home = async () => {
       </section>
       <section className="flex flex-col">
         <h2>Where you work</h2>
-        <small className="ml-auto">confidence {userCompanyInfo.confidence}</small>
+        <ConfidenceBar confidence={userCompanyInfo.confidence} className="ml-auto" />
         <ul>
           <li><Link href={"https://" + userCompanyInfo.company.domain}>{userCompanyInfo.company.name}</Link> | {userCompanyInfo.company.industry} company</li>
           <li>{userCompanyInfo.company.address}</li>
@@ -72,11 +75,11 @@ const Home = async () => {
       </section>
       {/* style prototype */}
       <div className="flex min-h-screen items-center justify-center bg-gray-900 p-4 text-green-500">
-      <div className="w-full max-w-md rounded-lg border border-green-500 p-6">
+      <Card className="max-w-md">
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold">User Profile</h1>
-            <div className="rounded-full bg-green-500 px-3 py-1 text-xs font-bold text-gray-900">ID: 12345</div>
+            <Badge>ID: 12345</Badge>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -101,7 +104,7 @@ const Home = async () => {
             <div className="text-lg">2023-04-01</div>
           </div>
         </div>
-      </div>
+      </Card>
     </div>
     </main>
   );

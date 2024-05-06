@@ -8,6 +8,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        background: "rgb(17 24 39)",
+        primary: "rgb(34 197 94)",
+      },
+      maxWidth: {
+        default: "900px"
+      }
     },
   },
   plugins: [],

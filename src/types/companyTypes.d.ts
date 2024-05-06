@@ -1,3 +1,5 @@
+export type Confidence = 'Very High' | 'High'| 'Moderate' | 'Low'
+
 export type Company = {
   company: {
     domain: string;
@@ -35,5 +37,5 @@ export type Company = {
     names: Array<any>;
     list: Array<any>;
   };
-  confidence: 'Very' | 'High' | 'High' | 'Moderate' | 'Low'
+  confidence: Confidence
 };
