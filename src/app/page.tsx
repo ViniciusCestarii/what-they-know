@@ -2,16 +2,10 @@ import { Company } from '@/types/companyTypes'
 import { IpDetails } from '@/types/ipDetailsTypes'
 import { env } from '@/utils/env'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import Badge from '@/components/ui/Badge'
 import ConfidenceBar from '@/components/ui/ConfidenceBar'
 import Card from '@/components/ui/Card'
 import Image from 'next/image'
-
-const LeafletMap = dynamic(() => import('@/components/ui/Map'), {
-  ssr: false,
-  loading: () => <Card className="h-[410px] p-1" />,
-})
 
 const Home = async () => {
   const userCompanyInfoRequest = await fetch(
@@ -42,11 +36,6 @@ const Home = async () => {
       <section className="flex flex-col">
         <h2>Where you are</h2>
         <ConfidenceBar confidence="Very High" className="ml-auto" />
-        <LeafletMap
-          lat={parseFloat(userIpInfo.loc.split(',')[0])}
-          lng={parseFloat(userIpInfo.loc.split(',')[1])}
-          jawgAccessToken={env.JAWG_ACCESS_TOKEN}
-        />
         <ul>
           <li>City: {userIpInfo.city}</li>
           <li>Region: {userIpInfo.region}</li>
