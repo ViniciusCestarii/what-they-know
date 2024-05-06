@@ -1,10 +1,12 @@
 interface BadgeProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
-const Badge = ({children}: BadgeProps) => {
+const Badge = ({ children }: BadgeProps) => {
   return (
-    <div className="rounded-full bg-primary px-3 py-1 text-xs font-bold text-background">{children}</div>
+    <div className="rounded-full bg-primary px-3 py-1 text-xs font-bold text-background">
+      {children}
+    </div>
   )
 }
 
