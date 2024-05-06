@@ -15,7 +15,11 @@ const LeafletMap = dynamic(() => import('@/components/ui/Map'), {
 
 const Home = async () => {
   const header = headers()
-  const ip = (header.get('x-forwarded-for') ?? '127.0.0.1').split(',')[0]
+  const forwardedFor = header.get('x-forwarded-for')
+  const ip =
+    forwardedFor != null && forwardedFor !== '::1'
+      ? forwardedFor.split(',')[0]
+      : '8.8.4.4'
   console.log('ip: ' + ip)
   const userCompanyInfoRequest = await fetch(
     'https://epsilon.6sense.com/v3/company/details',
@@ -28,16 +32,11 @@ const Home = async () => {
 
   const userCompanyInfo: Company = await userCompanyInfoRequest.json()
 
-  const response = await fetch('https://ipinfo.io/json', {
-    headers: {
-      Accept: 'application/json',
-    },
-  })
-  const userIpInfo = await response.json()
   const userIpDetailsRequest = await fetch(
-    `https://ipinfo.io/widget/demo/${userIpInfo.ip}`,
+    `https://ipinfo.io/widget/demo/${ip}`,
   )
-  const userIpInfoDetails: IpDetails = await userIpDetailsRequest.json()
+  const { data: userIpInfoDetails }: IpDetails =
+    await userIpDetailsRequest.json()
 
   return (
     <div className="flex flex-col gap-4">
@@ -47,35 +46,35 @@ const Home = async () => {
         <h2>Where you are</h2>
         <ConfidenceBar confidence="Very High" className="ml-auto" />
         <LeafletMap
-          lat={parseFloat(userIpInfo.loc.split(',')[0])}
-          lng={parseFloat(userIpInfo.loc.split(',')[1])}
+          lat={parseFloat(userIpInfoDetails.loc.split(',')[0])}
+          lng={parseFloat(userIpInfoDetails.loc.split(',')[1])}
           jawgAccessToken={env.JAWG_ACCESS_TOKEN}
         />
         <ul>
-          <li>City: {userIpInfo.city}</li>
-          <li>Region: {userIpInfo.region}</li>
-          <li>Country: {userIpInfo.country}</li>
-          <li>Postal: {userIpInfo.postal}</li>
+          <li>City: {userIpInfoDetails.city}</li>
+          <li>Region: {userIpInfoDetails.region}</li>
+          <li>Country: {userIpInfoDetails.country}</li>
+          <li>Postal: {userIpInfoDetails.postal}</li>
         </ul>
       </section>
       <section className="flex flex-col">
         <h2>How you are browsing</h2>
         <ConfidenceBar confidence="Very High" className="ml-auto" />
         <ul>
-          <li>IP: {userIpInfo.ip}</li>
-          <li>Hostname: {userIpInfo.hostname}</li>
-          <li>City: {userIpInfo.city}</li>
-          <li>Region: {userIpInfo.region}</li>
-          <li>Country: {userIpInfo.country}</li>
-          <li>Postal: {userIpInfo.postal}</li>
-          <li>Timezone: {userIpInfo.timezone}</li>
-          <li>ASN: {userIpInfoDetails.data.asn.asn}</li>
-          <li>ASN Name: {userIpInfoDetails.data.asn.name}</li>
-          <li>ASN Domain: {userIpInfoDetails.data.asn.domain}</li>
-          <li>ASN Route: {userIpInfoDetails.data.asn.route}</li>
-          <li>ASN Type: {userIpInfoDetails.data.asn.type}</li>
-          <li>Vpn: {userIpInfoDetails.data.privacy.vpn ? 'True' : 'False'}</li>
-          {userIpInfoDetails.data.privacy.vpn && (
+          <li>IP: {userIpInfoDetails.ip}</li>
+          <li>Hostname: {userIpInfoDetails.hostname}</li>
+          <li>City: {userIpInfoDetails.city}</li>
+          <li>Region: {userIpInfoDetails.region}</li>
+          <li>Country: {userIpInfoDetails.country}</li>
+          <li>Postal: {userIpInfoDetails.postal}</li>
+          <li>Timezone: {userIpInfoDetails.timezone}</li>
+          <li>ASN: {userIpInfoDetails.asn.asn}</li>
+          <li>ASN Name: {userIpInfoDetails.asn.name}</li>
+          <li>ASN Domain: {userIpInfoDetails.asn.domain}</li>
+          <li>ASN Route: {userIpInfoDetails.asn.route}</li>
+          <li>ASN Type: {userIpInfoDetails.asn.type}</li>
+          <li>Vpn: {userIpInfoDetails.privacy.vpn ? 'True' : 'False'}</li>
+          {userIpInfoDetails.privacy.vpn && (
             <Image
               className="rounded-full mx-auto max-w-60 max-h-60"
               src="/vpn.jpeg"
