@@ -43,6 +43,7 @@ const Home = async () => {
         <LeafletMap
           lat={parseFloat(userIpInfo.loc.split(',')[0])}
           lng={parseFloat(userIpInfo.loc.split(',')[1])}
+          jawgAccessToken={env.JAWG_ACCESS_TOKEN}
         />
         <ul>
           <li>City: {userIpInfo.city}</li>
