@@ -7,13 +7,16 @@ import Badge from '@/components/ui/Badge'
 import ConfidenceBar from '@/components/ui/ConfidenceBar'
 import Card from '@/components/ui/Card'
 import Image from 'next/image'
-
+import { headers } from 'next/headers'
 const LeafletMap = dynamic(() => import('@/components/ui/Map'), {
   ssr: false,
   loading: () => <Card className="h-[410px] p-1" />,
 })
 
 const Home = async () => {
+  const header = headers()
+  const ip = (header.get('x-forwarded-for') ?? '127.0.0.1').split(',')[0]
+  console.log('ip: ' + ip)
   const userCompanyInfoRequest = await fetch(
     'https://epsilon.6sense.com/v3/company/details',
     {
@@ -38,6 +41,7 @@ const Home = async () => {
 
   return (
     <div className="flex flex-col gap-4">
+      {ip}
       <h1>What they know about you</h1>
       <section className="flex flex-col">
         <h2>Where you are</h2>
