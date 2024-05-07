@@ -18,7 +18,7 @@ const LeafletMap = dynamic(() => import('@/components/ui/Map'), {
 
 const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
   const userIpLocationRequest = await fetch(
-    `https://api.ip2location.io/?key=${env.IP2LOCATION_API_KEY}&ip=${ip}&format=json`,
+    `https://api.ipgeolocation.io/ipgeo?apiKey=${env.IPGEOLOCATION_API_KEY}&ip=${ip}`,
   )
   const userIpLocation: IpLocation = await userIpLocationRequest.json()
   const userIpDetailsRequest = await fetch(
@@ -26,7 +26,7 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
   )
   const ipDataDetails: IpDataDetails = await userIpDetailsRequest.json()
 
-  if (!ipDataDetails?.languages || !userIpLocation?.city_name) {
+  if (!ipDataDetails?.languages || !userIpLocation?.city) {
     return (
       <p>
         Apologies for the inconvenience, but it appears that this website&apos;s
@@ -41,13 +41,13 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
         <h2>Where you are</h2>
         <ConfidenceBar confidence="High" className="ml-auto" />
         <LeafletMap
-          lat={userIpLocation.latitude}
-          lng={userIpLocation.longitude}
+          lat={parseFloat(userIpLocation.latitude)}
+          lng={parseFloat(userIpLocation.longitude)}
           jawgAccessToken={env.JAWG_ACCESS_TOKEN}
         />
         <ul>
-          <li>City: {userIpLocation.city_name}</li>
-          <li>Region: {userIpLocation.region_name}</li>
+          <li>City: {userIpLocation.city}</li>
+          <li>Region: {userIpLocation.state_prov}</li>
           <li>Country: {userIpLocation.country_name}</li>
           <li>
             You probably speak: {ipDataDetails.languages[0].name} |{' '}
@@ -60,11 +60,11 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
         <ConfidenceBar confidence="Very High" className="ml-auto" />
         <ul>
           <li>IP: {ipDataDetails.ip}</li>
-          <li>City: {userIpLocation.city_name}</li>
-          <li>Region: {userIpLocation.region_name}</li>
+          <li>City: {userIpLocation.city}</li>
+          <li>Region: {userIpLocation.state_prov}</li>
           <li>Country: {userIpLocation.country_name}</li>
           <li>Postal: {ipDataDetails.postal}</li>
-          <li>Timezone: {userIpLocation.time_zone}</li>
+          <li>Timezone: {userIpLocation.time_zone.name}</li>
           <li>ASN: {ipDataDetails.asn.asn}</li>
           <li>ASN Name: {ipDataDetails.asn.name}</li>
           <li>ASN Domain: {ipDataDetails.asn.domain}</li>
