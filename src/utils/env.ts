@@ -3,6 +3,7 @@ import { z } from 'zod'
 const envSchema = z.object({
   EPSILON6SENSE_API_KEY: z.string(),
   JAWG_ACCESS_TOKEN: z.string(),
+  IPDATA_API_KEY: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)

@@ -27,8 +27,6 @@ const LeafletMap = ({ lat, lng, jawgAccessToken }: LeafletMapProps) => {
     lng,
   }
 
-  // TODO: improve this to not repeat
-
   useEffect(() => {
     toast("You're using a VPN", {
       icon: (
