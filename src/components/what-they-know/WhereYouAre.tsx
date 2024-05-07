@@ -46,7 +46,7 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
           jawgAccessToken={env.JAWG_ACCESS_TOKEN}
         />
         <ul>
-          <li>City {userIpLocation.city_name}</li>
+          <li>City: {userIpLocation.city_name}</li>
           <li>Region: {userIpLocation.region_name}</li>
           <li>Country: {userIpLocation.country_name}</li>
           <li>
