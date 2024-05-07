@@ -1,42 +1,36 @@
 export type IpDetails = {
-  input: string
-  data: {
-    ip: string
-    hostname: string
+  status: string
+  demoInfo: {
+    error?: {
+      message: string
+    }
+    ipAddress: string
+    continentCode: string
+    continentName: string
+    countryCode: string
+    countryName: string
+    isEuMember: boolean
+    currencyCode: string
+    currencyName: string
+    phonePrefix: string
+    languages: string[]
+    stateProvCode: string
+    stateProv: string
+    district: string
     city: string
-    region: string
-    country: string
-    loc: string
-    org: string
-    postal: string
-    timezone: string
-    asn: {
-      asn: string
-      name: string
-      domain: string
-      route: string
-      type: string
-    }
-    company: {
-      name: string
-      domain: string
-      type: string
-    }
-    privacy: {
-      vpn: boolean
-      proxy: boolean
-      tor: boolean
-      relay: boolean
-      hosting: boolean
-      service: string
-    }
-    abuse: {
-      address: string
-      country: string
-      email: string
-      name: string
-      network: string
-      phone: string
-    }
+    geonameId: number
+    latitude: number
+    longitude: number
+    gmtOffset: number
+    timeZone: string
+    weatherCode: string
+    asNumber: number
+    asName: string
+    isp: string
+    usageType: string
+    organization: string
+    isCrawler: boolean
+    isProxy: boolean
+    threatLevel: string
   }
 }

@@ -1,7 +1,5 @@
-import { Company } from '@/types/companyTypes'
 import { IpDetails } from '@/types/ipDetailsTypes'
 import { env } from '@/utils/env'
-import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Badge from '@/components/ui/Badge'
 import ConfidenceBar from '@/components/ui/ConfidenceBar'
@@ -21,22 +19,29 @@ const Home = async () => {
       ? forwardedFor.split(',')[0]
       : '8.8.4.4'
   console.log('ip: ' + ip)
-  const userCompanyInfoRequest = await fetch(
-    'https://epsilon.6sense.com/v3/company/details',
-    {
-      headers: {
-        Authorization: env.EPSILON6SENSE_API_KEY,
-      },
-    },
-  )
 
-  const userCompanyInfo: Company = await userCompanyInfoRequest.json()
+  // const userCompanyInfoRequest = await fetch(
+  //   'https://epsilon.6sense.com/v3/company/details',
+  //   {
+  //     headers: {
+  //       Authorization: env.EPSILON6SENSE_API_KEY,
+  //     },
+  //   },
+  // )
+
+  // const userCompanyInfo: Company = await userCompanyInfoRequest.json()
 
   const userIpDetailsRequest = await fetch(
-    `https://ipinfo.io/widget/demo/${ip}`,
+    `https://db-ip.com/demo/home.php?s=${ip}`,
   )
-  const { data: userIpInfoDetails }: IpDetails =
+  const { demoInfo: userIpInfoDetails }: IpDetails =
     await userIpDetailsRequest.json()
+
+  if (userIpInfoDetails.error) {
+    return "Sorry looks like the server passed it's API quota. Please try again later."
+  }
+
+  console.log('userIpInfoDetails: ', userIpInfoDetails)
 
   return (
     <div className="flex flex-col gap-4">
@@ -46,35 +51,33 @@ const Home = async () => {
         <h2>Where you are</h2>
         <ConfidenceBar confidence="Very High" className="ml-auto" />
         <LeafletMap
-          lat={parseFloat(userIpInfoDetails.loc.split(',')[0])}
-          lng={parseFloat(userIpInfoDetails.loc.split(',')[1])}
+          lat={userIpInfoDetails.latitude}
+          lng={userIpInfoDetails.longitude}
           jawgAccessToken={env.JAWG_ACCESS_TOKEN}
         />
         <ul>
           <li>City: {userIpInfoDetails.city}</li>
-          <li>Region: {userIpInfoDetails.region}</li>
-          <li>Country: {userIpInfoDetails.country}</li>
-          <li>Postal: {userIpInfoDetails.postal}</li>
+          <li>Region: {userIpInfoDetails.stateProv}</li>
+          <li>Country: {userIpInfoDetails.countryName}</li>
+          <li>Continent: {userIpInfoDetails.continentName}</li>
+          <li>You probably speak: {userIpInfoDetails.languages[0]}</li>
         </ul>
       </section>
       <section className="flex flex-col">
         <h2>How you are browsing</h2>
         <ConfidenceBar confidence="Very High" className="ml-auto" />
         <ul>
-          <li>IP: {userIpInfoDetails.ip}</li>
-          <li>Hostname: {userIpInfoDetails.hostname}</li>
-          <li>City: {userIpInfoDetails.city}</li>
-          <li>Region: {userIpInfoDetails.region}</li>
-          <li>Country: {userIpInfoDetails.country}</li>
-          <li>Postal: {userIpInfoDetails.postal}</li>
-          <li>Timezone: {userIpInfoDetails.timezone}</li>
-          <li>ASN: {userIpInfoDetails.asn.asn}</li>
-          <li>ASN Name: {userIpInfoDetails.asn.name}</li>
-          <li>ASN Domain: {userIpInfoDetails.asn.domain}</li>
-          <li>ASN Route: {userIpInfoDetails.asn.route}</li>
-          <li>ASN Type: {userIpInfoDetails.asn.type}</li>
-          <li>Vpn: {userIpInfoDetails.privacy.vpn ? 'True' : 'False'}</li>
-          {userIpInfoDetails.privacy.vpn && (
+          <li>IP: {userIpInfoDetails.ipAddress}</li>
+          <li>ISP: {userIpInfoDetails.isp}</li>
+          <li>Organization: {userIpInfoDetails.organization}</li>
+          <li>Threat Level: {userIpInfoDetails.threatLevel}</li>
+          <li>
+            Are you a Bot: {userIpInfoDetails.isCrawler ? 'True' : 'False'}
+          </li>
+          <li>
+            Are you using Proxy: {userIpInfoDetails.isProxy ? 'True' : 'False'}
+          </li>
+          {userIpInfoDetails.isProxy && (
             <Image
               className="rounded-full mx-auto max-w-60 max-h-60"
               src="/vpn.jpeg"
@@ -85,7 +88,7 @@ const Home = async () => {
           )}
         </ul>
       </section>
-      <section className="flex flex-col">
+      {/* <section className="flex flex-col">
         <h2>Where you work</h2>
         <ConfidenceBar
           confidence={userCompanyInfo.confidence}
@@ -106,7 +109,7 @@ const Home = async () => {
           <li>{userCompanyInfo.company.country}</li>
           <li>{userCompanyInfo.company.phone}</li>
         </ul>
-      </section>
+      </section> */}
       {/* style prototype */}
       <div className="flex min-h-screen items-center justify-center bg-gray-900 p-4 text-green-500">
         <Card className="max-w-md">
