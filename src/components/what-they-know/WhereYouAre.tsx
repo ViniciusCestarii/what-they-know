@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { IpDataDetails } from '@/types/ipDetailsTypes'
 import Card from '../ui/Card'
 import dynamic from 'next/dynamic'
+import { IpLocation } from '@/types/ipLocationTypes'
 
 interface WhereYouAreProps {
   ip: string
@@ -16,12 +17,16 @@ const LeafletMap = dynamic(() => import('@/components/ui/Map'), {
 })
 
 const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
+  const userIpLocationRequest = await fetch(
+    `https://api.ip2location.io/?key=${env.IP2LOCATION_API_KEY}&ip=${ip}&format=json`,
+  )
+  const userIpLocation: IpLocation = await userIpLocationRequest.json()
   const userIpDetailsRequest = await fetch(
     `https://api.ipdata.co/${ip}?api-key=${env.IPDATA_API_KEY}`,
   )
   const ipDataDetails: IpDataDetails = await userIpDetailsRequest.json()
 
-  if (!ipDataDetails?.languages) {
+  if (!ipDataDetails?.languages || !userIpLocation?.city_name) {
     return (
       <p>
         Apologies for the inconvenience, but it appears that this website&apos;s
@@ -36,14 +41,14 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
         <h2>Where you are</h2>
         <ConfidenceBar confidence="High" className="ml-auto" />
         <LeafletMap
-          lat={ipDataDetails.latitude}
-          lng={ipDataDetails.longitude}
+          lat={userIpLocation.latitude}
+          lng={userIpLocation.longitude}
           jawgAccessToken={env.JAWG_ACCESS_TOKEN}
         />
         <ul>
-          <li>Region: {ipDataDetails.region}</li>
-          <li>Country: {ipDataDetails.country_name}</li>
-          <li>Continent: {ipDataDetails.continent_name}</li>
+          <li>City {userIpLocation.city_name}</li>
+          <li>Region: {userIpLocation.region_name}</li>
+          <li>Country: {userIpLocation.country_name}</li>
           <li>
             You probably speak: {ipDataDetails.languages[0].name} |{' '}
             {ipDataDetails.languages[0].native}
@@ -55,11 +60,11 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
         <ConfidenceBar confidence="Very High" className="ml-auto" />
         <ul>
           <li>IP: {ipDataDetails.ip}</li>
-          <li>City: {ipDataDetails.city}</li>
-          <li>Region: {ipDataDetails.region}</li>
-          <li>Country: {ipDataDetails.country_name}</li>
+          <li>City: {userIpLocation.city_name}</li>
+          <li>Region: {userIpLocation.region_name}</li>
+          <li>Country: {userIpLocation.country_name}</li>
           <li>Postal: {ipDataDetails.postal}</li>
-          <li>Timezone: {ipDataDetails.time_zone.name}</li>
+          <li>Timezone: {userIpLocation.time_zone}</li>
           <li>ASN: {ipDataDetails.asn.asn}</li>
           <li>ASN Name: {ipDataDetails.asn.name}</li>
           <li>ASN Domain: {ipDataDetails.asn.domain}</li>
