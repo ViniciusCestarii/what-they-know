@@ -6,6 +6,7 @@ import { IpDataDetails } from '@/types/ipDetailsTypes'
 import Card from '../ui/Card'
 import dynamic from 'next/dynamic'
 import { IpLocation } from '@/types/ipLocationTypes'
+import Badge from '../ui/Badge'
 
 interface WhereYouAreProps {
   ip: string
@@ -13,7 +14,7 @@ interface WhereYouAreProps {
 
 const LeafletMap = dynamic(() => import('@/components/ui/Map'), {
   ssr: false,
-  loading: () => <Card className="h-[410px] p-1" />,
+  loading: () => <Card className="h-[210px] p-1" />,
 })
 
 const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
@@ -37,14 +38,45 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
 
   return (
     <>
-      <section className="flex flex-col">
-        <h2>Where you are</h2>
-        <ConfidenceBar confidence="High" className="ml-auto" />
-        <LeafletMap
-          lat={parseFloat(userIpLocation.latitude)}
-          lng={parseFloat(userIpLocation.longitude)}
-          jawgAccessToken={env.JAWG_ACCESS_TOKEN}
-        />
+      <section className="flex flex-col max-w-xl mx-auto">
+        <div className="flex flex-wrap justify-between">
+          <h2>Where you are</h2>
+          <ConfidenceBar confidence="Moderate" />
+        </div>
+        <Card>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="text-2xl font-bold">You</span>
+              <Badge>IP: {ip}</Badge>
+            </div>
+            <div className="grid grid-cols-4 gap-4">
+              <div>
+                <div className="text-sm font-bold">Region</div>
+                <div className="text-lg">{userIpLocation.state_prov}</div>
+                <div className="text-sm font-bold">Country</div>
+                <div className="text-lg">{userIpLocation.country_name}</div>
+                <div className="relative h-20 max-w-16 mx-auto">
+                  <Image
+                    alt={`${userIpLocation.country_name} flag`}
+                    src={userIpLocation.country_flag}
+                    fill={true}
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+              <div className="col-span-3">
+                <div className="text-sm font-bold">
+                  Your IP provider location
+                </div>
+                <LeafletMap
+                  lat={parseFloat(userIpLocation.latitude)}
+                  lng={parseFloat(userIpLocation.longitude)}
+                  jawgAccessToken={env.JAWG_ACCESS_TOKEN}
+                />
+              </div>
+            </div>
+          </div>
+        </Card>
         <ul>
           <li>City: {userIpLocation.city}</li>
           <li>Region: {userIpLocation.state_prov}</li>

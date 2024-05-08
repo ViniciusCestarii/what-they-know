@@ -1,5 +1,6 @@
 import Badge from '@/components/ui/Badge'
 import Card from '@/components/ui/Card'
+import Hero from '@/components/what-they-know/Hero'
 import WhereYouAre from '@/components/what-they-know/WhereYouAre'
 import { headers } from 'next/headers'
 
@@ -13,6 +14,7 @@ const Home = async () => {
 
   return (
     <div className="flex flex-col gap-4">
+      <Hero />
       <WhereYouAre ip={ip} />
       {/* <WhereYouWork /> */}
       {/* style prototype */}
