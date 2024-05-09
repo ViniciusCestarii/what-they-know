@@ -7,6 +7,10 @@ import Card from '../ui/Card'
 import dynamic from 'next/dynamic'
 import { IpLocation } from '@/types/ipLocationTypes'
 import Badge from '../ui/Badge'
+import { Info } from 'lucide-react'
+import TypographyH2 from '../ui/TypographyH2'
+import Tooltip from '../ui/Tooltip'
+import TypographyP from '../ui/TypographyP'
 
 interface WhereYouAreProps {
   ip: string
@@ -39,20 +43,37 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
   return (
     <>
       <section className="flex flex-col max-w-xl mx-auto">
-        <div className="flex flex-wrap justify-between">
-          <h2>Where you are</h2>
-          <ConfidenceBar confidence="Moderate" />
-        </div>
+        <ConfidenceBar confidence="High" className="ml-auto" />
         <Card>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-2xl font-bold">You</span>
+              <TypographyH2 className="capitalize flex items-center gap-2">
+                Where you are{' '}
+                <Info className="text-primary" id="where-you-are-icon" />
+                <Tooltip anchorSelect="#where-you-are-icon" clickable>
+                  <TypographyP className="normal-case">
+                    This info is gathered based on your IP provider location.
+                  </TypographyP>
+                </Tooltip>
+              </TypographyH2>
               <Badge>IP: {ip}</Badge>
             </div>
             <div className="grid grid-cols-4 gap-4">
               <div>
                 <div className="text-sm font-bold">Region</div>
                 <div className="text-lg">{userIpLocation.state_prov}</div>
+              </div>
+              <div className="col-span-3 row-span-2">
+                <div className="text-sm font-bold">
+                  Your IP provider location
+                </div>
+                <LeafletMap
+                  lat={parseFloat(userIpLocation.latitude)}
+                  lng={parseFloat(userIpLocation.longitude)}
+                  jawgAccessToken={env.JAWG_ACCESS_TOKEN}
+                />
+              </div>
+              <div>
                 <div className="text-sm font-bold">Country</div>
                 <div className="text-lg">{userIpLocation.country_name}</div>
                 <div className="relative h-20 max-w-16 mx-auto">
@@ -63,16 +84,6 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
                     className="object-contain"
                   />
                 </div>
-              </div>
-              <div className="col-span-3">
-                <div className="text-sm font-bold">
-                  Your IP provider location
-                </div>
-                <LeafletMap
-                  lat={parseFloat(userIpLocation.latitude)}
-                  lng={parseFloat(userIpLocation.longitude)}
-                  jawgAccessToken={env.JAWG_ACCESS_TOKEN}
-                />
               </div>
             </div>
           </div>
