@@ -116,8 +116,10 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
           <li>
             Are you a threat:{' '}
             {ipDataDetails.threat.is_known_abuser ||
-              ipDataDetails.threat.is_threat ||
-              ipDataDetails.threat.is_known_attacker}
+            ipDataDetails.threat.is_threat ||
+            ipDataDetails.threat.is_known_attacker
+              ? "Yes, you're a threat"
+              : 'No'}
           </li>
           <li>Proxy: {ipDataDetails.threat.is_proxy ? 'True' : 'False'}</li>
           {ipDataDetails.threat.is_proxy ||
