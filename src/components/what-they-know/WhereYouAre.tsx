@@ -11,7 +11,6 @@ import Tooltip from '../ui/Tooltip'
 import TypographyP from '../ui/TypographyP'
 import { fetchUserLocation } from '@/fetch/fetchUserLocation'
 import { fetchUserIpDetails } from '@/fetch/fetchUserIpDetails'
-import { userIp } from '@/utils/userIp'
 import Incovenience from './Incovenience'
 
 const LeafletMap = dynamic(() => import('@/components/ui/Map'), {
@@ -19,9 +18,13 @@ const LeafletMap = dynamic(() => import('@/components/ui/Map'), {
   loading: () => <Card className="h-[210px] p-1" />,
 })
 
-const WhereYouAre = async () => {
-  const userIpLocation = await fetchUserLocation()
-  const ipDataDetails = await fetchUserIpDetails()
+interface WhereYouAreProps {
+  ip: string
+}
+
+const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
+  const userIpLocation = await fetchUserLocation(ip)
+  const ipDataDetails = await fetchUserIpDetails(ip)
 
   if (!ipDataDetails?.languages || !userIpLocation?.city) {
     return <Incovenience />
@@ -43,7 +46,7 @@ const WhereYouAre = async () => {
                   </TypographyP>
                 </Tooltip>
               </TypographyH2>
-              <Badge>IP: {userIp}</Badge>
+              <Badge>IP: {ip}</Badge>
             </div>
             <div className="grid grid-cols-4 gap-4">
               <div>

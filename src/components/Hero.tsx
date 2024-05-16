@@ -1,6 +1,6 @@
 import React from 'react'
-import TypographyH1 from '../ui/TypographyH1'
-import { TypewriterEffect } from '../ui/TypeWrighther'
+import TypographyH1 from './ui/TypographyH1'
+import { TypewriterEffect } from './ui/TypeWrighther'
 
 const Hero = () => {
   return (

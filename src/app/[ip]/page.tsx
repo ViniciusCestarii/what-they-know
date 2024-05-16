@@ -1,13 +1,14 @@
 import Hero from '@/components/Hero'
 import WhatTheyKnow from '@/components/what-they-know/WhatTheyKnow'
 
-const Home = async () => {
+const IpInfo = async ({ params }: { params: { ip: string } }) => {
+  const { ip } = params
   return (
     <div className="flex flex-col gap-4">
       <Hero />
-      <WhatTheyKnow />
+      <WhatTheyKnow ip={ip} />
     </div>
   )
 }
 
-export default Home
+export default IpInfo
