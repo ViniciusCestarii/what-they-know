@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className=" flex flex-col bg-background p-4 text-primary max-w-default mx-auto">
+      <body className=" flex flex-col bg-background min-h-screen  p-4 p-y6 text-primary max-w-default mx-auto">
         <Toaster />
         <main>{children}</main>
       </body>
