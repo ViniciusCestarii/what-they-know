@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Card from '../ui/Card'
 import dynamic from 'next/dynamic'
 import Badge from '../ui/Badge'
-import { Info } from 'lucide-react'
+import { Info, Languages } from 'lucide-react'
 import TypographyH2 from '../ui/TypographyH2'
 import Tooltip from '../ui/Tooltip'
 import TypographyP from '../ui/TypographyP'
@@ -15,7 +15,7 @@ import Incovenience from './Incovenience'
 
 const LeafletMap = dynamic(() => import('@/components/ui/Map'), {
   ssr: false,
-  loading: () => <Card className="h-[210px] p-1" />,
+  loading: () => <Card className="h-[242px] p-1" />,
 })
 
 interface WhereYouAreProps {
@@ -53,7 +53,7 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
                 <div className="text-sm font-bold">Region</div>
                 <div className="text-lg">{userIpLocation.state_prov}</div>
               </div>
-              <div className="col-span-3 row-span-2">
+              <div className="col-span-3 row-span-3">
                 <div className="text-sm font-bold">
                   Your IP provider location
                 </div>
@@ -75,9 +75,29 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
                   />
                 </div>
               </div>
+              <div>
+                <div className="text-sm font-bold">Language</div>
+                <div className="text-lg flex items-center gap-2">
+                  {' '}
+                  {ipDataDetails.languages[0].name}
+                  {ipDataDetails.languages[0].name.toLowerCase() !==
+                    'english' && (
+                    <>
+                      <Languages className="text-primary" id="language-icon" />
+                      <Tooltip anchorSelect="#language-icon" clickable>
+                        <TypographyP>
+                          Sorry, I didn&apos;t tranlate this page into &quot;
+                          {ipDataDetails.languages[0].native}&quot;.
+                        </TypographyP>
+                      </Tooltip>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </Card>
+        {/*
         <ul>
           <li>City: {userIpLocation.city}</li>
           <li>Region: {userIpLocation.state_prov}</li>
@@ -124,6 +144,7 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
               />
             ))}
         </ul>
+          */}
       </section>
     </>
   )

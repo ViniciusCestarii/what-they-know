@@ -1,7 +1,7 @@
 import React from 'react'
 import WhereYouAre from './WhereYouAre'
-import Card from '../ui/Card'
-import Badge from '../ui/Badge'
+// import Card from '../ui/Card'
+// import Badge from '../ui/Badge'
 import { fetchUserIp } from '@/fetch/fetchUserIp'
 
 export interface WhatTheyKnowMainProps {
@@ -15,6 +15,7 @@ const WhatTheyKnowMain = async ({ ip: ipProp }: WhatTheyKnowMainProps) => {
       <WhereYouAre ip={ip} />
       {/* <WhereYouWork /> */}
       {/* style prototype */}
+      {/*
       <div className="flex min-h-screen items-center justify-center bg-gray-900 p-4 text-green-500">
         <Card className="max-w-md">
           <div className="space-y-4">
@@ -47,6 +48,7 @@ const WhatTheyKnowMain = async ({ ip: ipProp }: WhatTheyKnowMainProps) => {
           </div>
         </Card>
       </div>
+  */}
     </>
   )
 }

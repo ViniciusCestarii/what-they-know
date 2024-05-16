@@ -9,7 +9,7 @@ const WhatTheyKnow = (props: WhatTheyKnowMainProps) => {
   return (
     <div className="flex flex-col gap-4">
       <Hero />
-      <div className="max-w-xl mx-auto">
+      <div className="max-w-xl mx-auto flex flex-col gap-16">
         <WhatTheyKnowMain {...props} />
         <FetchOtherIp />
       </div>

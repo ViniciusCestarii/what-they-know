@@ -29,7 +29,7 @@ const LeafletMap = ({ lat, lng, jawgAccessToken }: LeafletMapProps) => {
       <MapContainer
         center={center}
         zoom={16}
-        style={{ height: '200px', width: '100%', maxWidth: '100%' }}
+        style={{ height: '232px', width: '100%', maxWidth: '100%', zIndex: 0 }}
       >
         <TileLayer
           url={`https://tile.jawg.io/jawg-matrix/{z}/{x}/{y}{r}.png?access-token=${jawgAccessToken}`}
