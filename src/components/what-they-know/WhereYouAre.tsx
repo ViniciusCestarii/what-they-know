@@ -32,7 +32,7 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
 
   return (
     <>
-      <section className="flex flex-col max-w-xl mx-auto">
+      <section className="flex flex-col">
         <ConfidenceBar confidence="High" className="ml-auto" />
         <Card>
           <div className="space-y-4">

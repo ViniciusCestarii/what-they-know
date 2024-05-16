@@ -4,11 +4,11 @@ import Card from '../ui/Card'
 import Badge from '../ui/Badge'
 import { fetchUserIp } from '@/fetch/fetchUserIp'
 
-interface WhatTheyKnowProps {
+export interface WhatTheyKnowMainProps {
   ip?: string
 }
 
-const WhatTheyKnow = async ({ ip: ipProp }: WhatTheyKnowProps) => {
+const WhatTheyKnowMain = async ({ ip: ipProp }: WhatTheyKnowMainProps) => {
   const ip = ipProp ?? (await fetchUserIp())
   return (
     <>
@@ -51,4 +51,4 @@ const WhatTheyKnow = async ({ ip: ipProp }: WhatTheyKnowProps) => {
   )
 }
 
-export default WhatTheyKnow
+export default WhatTheyKnowMain

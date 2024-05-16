@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'ipgeolocation.io',
       },
+      {
+        protocol: 'https',
+        hostname: 'source.unsplash.com',
+      },
     ],
   },
 }

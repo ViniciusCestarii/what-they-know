@@ -1,13 +1,7 @@
-import Hero from '@/components/Hero'
-import WhatTheyKnow from '@/components/what-they-know/WhatTheyKnow'
+import WhatTheyKnow from '@/components/WhatTheyKnow'
 
 const Home = async () => {
-  return (
-    <div className="flex flex-col gap-4">
-      <Hero />
-      <WhatTheyKnow />
-    </div>
-  )
+  return <WhatTheyKnow />
 }
 
 export default Home
