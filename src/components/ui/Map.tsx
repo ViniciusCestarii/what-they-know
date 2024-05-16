@@ -4,9 +4,6 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import Card from './Card'
-import Image from 'next/image'
-import { toast } from 'sonner'
-import { useEffect } from 'react'
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -26,20 +23,6 @@ const LeafletMap = ({ lat, lng, jawgAccessToken }: LeafletMapProps) => {
     lat,
     lng,
   }
-
-  useEffect(() => {
-    toast("You're using a VPN", {
-      icon: (
-        <Image
-          className="rounded-full mx-auto max-w-6 max-h-6"
-          src="/vpn.jpeg"
-          width={1024}
-          height={1024}
-          alt="lock representing vpn"
-        />
-      ),
-    })
-  }, [])
 
   return (
     <Card className="p-1">

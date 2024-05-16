@@ -2,42 +2,29 @@ import React from 'react'
 import ConfidenceBar from '../ui/ConfidenceBar'
 import { env } from '@/utils/env'
 import Image from 'next/image'
-import { IpDataDetails } from '@/types/ipDetailsTypes'
 import Card from '../ui/Card'
 import dynamic from 'next/dynamic'
-import { IpLocation } from '@/types/ipLocationTypes'
 import Badge from '../ui/Badge'
 import { Info } from 'lucide-react'
 import TypographyH2 from '../ui/TypographyH2'
 import Tooltip from '../ui/Tooltip'
 import TypographyP from '../ui/TypographyP'
-
-interface WhereYouAreProps {
-  ip: string
-}
+import { fetchUserLocation } from '@/fetch/fetchUserLocation'
+import { fetchUserIpDetails } from '@/fetch/fetchUserIpDetails'
+import { userIp } from '@/utils/userIp'
+import Incovenience from './Incovenience'
 
 const LeafletMap = dynamic(() => import('@/components/ui/Map'), {
   ssr: false,
   loading: () => <Card className="h-[210px] p-1" />,
 })
 
-const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
-  const userIpLocationRequest = await fetch(
-    `https://api.ipgeolocation.io/ipgeo?apiKey=${env.IPGEOLOCATION_API_KEY}&ip=${ip}`,
-  )
-  const userIpLocation: IpLocation = await userIpLocationRequest.json()
-  const userIpDetailsRequest = await fetch(
-    `https://api.ipdata.co/${ip}?api-key=${env.IPDATA_API_KEY}`,
-  )
-  const ipDataDetails: IpDataDetails = await userIpDetailsRequest.json()
+const WhereYouAre = async () => {
+  const userIpLocation = await fetchUserLocation()
+  const ipDataDetails = await fetchUserIpDetails()
 
   if (!ipDataDetails?.languages || !userIpLocation?.city) {
-    return (
-      <p>
-        Apologies for the inconvenience, but it appears that this website&apos;s
-        quota has been reached. Please try again tomorrow!
-      </p>
-    )
+    return <Incovenience />
   }
 
   return (
@@ -56,7 +43,7 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
                   </TypographyP>
                 </Tooltip>
               </TypographyH2>
-              <Badge>IP: {ip}</Badge>
+              <Badge>IP: {userIp}</Badge>
             </div>
             <div className="grid grid-cols-4 gap-4">
               <div>

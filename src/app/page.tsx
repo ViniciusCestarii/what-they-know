@@ -2,20 +2,12 @@ import Badge from '@/components/ui/Badge'
 import Card from '@/components/ui/Card'
 import Hero from '@/components/what-they-know/Hero'
 import WhereYouAre from '@/components/what-they-know/WhereYouAre'
-import { headers } from 'next/headers'
 
 const Home = async () => {
-  const header = headers()
-  const forwardedFor = header.get('x-forwarded-for')
-  const ip =
-    forwardedFor != null && forwardedFor !== '::1'
-      ? forwardedFor.split(',')[0]
-      : '8.8.4.4'
-
   return (
     <div className="flex flex-col gap-4">
       <Hero />
-      <WhereYouAre ip={ip} />
+      <WhereYouAre />
       {/* <WhereYouWork /> */}
       {/* style prototype */}
       <div className="flex min-h-screen items-center justify-center bg-gray-900 p-4 text-green-500">
