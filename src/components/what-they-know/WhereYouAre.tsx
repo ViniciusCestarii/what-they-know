@@ -15,7 +15,7 @@ import Incovenience from './Incovenience'
 
 const LeafletMap = dynamic(() => import('@/components/ui/Map'), {
   ssr: false,
-  loading: () => <Card className="h-[242px] p-1" />,
+  loading: () => <Card className="h-[266px] p-1" />,
 })
 
 interface WhereYouAreProps {
@@ -36,7 +36,7 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
         <ConfidenceBar confidence="High" className="ml-auto" />
         <Card>
           <div className="space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between flex-wrap gap-2">
               <TypographyH2 className="capitalize flex items-center gap-2">
                 Where you are{' '}
                 <Info className="text-primary" id="where-you-are-icon" />
@@ -46,7 +46,7 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
                   </TypographyP>
                 </Tooltip>
               </TypographyH2>
-              <Badge>IP: {ip}</Badge>
+              <Badge className="ml-auto sm:ml-0">IP: {ip}</Badge>
             </div>
             <div className="grid grid-cols-4 gap-4">
               <div>
@@ -77,7 +77,7 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
               </div>
               <div>
                 <div className="text-sm font-bold">Language</div>
-                <div className="text-lg flex items-center gap-2">
+                <div className="text-lg flex items-center justify-center gap-2 flex-wrap sm:justify-start">
                   {' '}
                   {ipDataDetails.languages[0].name}
                   {ipDataDetails.languages[0].name.toLowerCase() !==
