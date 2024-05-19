@@ -106,13 +106,13 @@ const HowYouAreBrowsing = async ({ ip }: HowYouAreBrowsingProps) => {
                 </div>
               </li>
               <li className="col-span-3 sm:col-span-1">
-                <Card className="p-0 h-20 w-full">
+                <Card className="p-0 h-28 w-full">
                   <Image
                     className="rounded-md object-cover h-full w-full"
-                    src="https://source.unsplash.com/random/1000x1000/?disorder"
-                    alt="dangerous"
-                    height={1000}
-                    width={1000}
+                    src="/hacker.jpg"
+                    alt="hacker"
+                    height={6000}
+                    width={3999}
                   />
                 </Card>
               </li>
