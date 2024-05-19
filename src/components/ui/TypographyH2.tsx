@@ -1,10 +1,10 @@
 import cn from '@/utils/cn'
 
-interface TypographyH2Props extends React.HTMLAttributes<HTMLHeadElement> {
-  children: React.ReactNode
-}
-
-const TypographyH2 = ({ children, className, ...props }: TypographyH2Props) => {
+const TypographyH2 = ({
+  children,
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLHeadElement>) => {
   return (
     <h2 {...props} className={cn('text-2xl font-bold', className)}>
       {children}

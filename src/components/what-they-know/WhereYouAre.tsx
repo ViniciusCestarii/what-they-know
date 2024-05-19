@@ -35,7 +35,7 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
       <section className="flex flex-col">
         <ConfidenceBar confidence="High" className="ml-auto" />
         <Card>
-          <div className="space-y-4">
+          <article className="space-y-4">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <TypographyH2 className="capitalize flex items-center gap-2">
                 Where you are{' '}
@@ -48,12 +48,12 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
               </TypographyH2>
               <Badge className="ml-auto sm:ml-0">IP: {ip}</Badge>
             </div>
-            <div className="grid grid-cols-4 gap-4">
-              <div>
+            <ul className="grid grid-cols-3 sm:grid-cols-4 gap-4">
+              <li>
                 <div className="text-sm font-bold">Region</div>
                 <div className="text-lg">{userIpLocation.state_prov}</div>
-              </div>
-              <div className="col-span-3 row-span-3">
+              </li>
+              <li className="col-span-2 sm:col-span-3 row-span-3">
                 <div className="text-sm font-bold">
                   Your IP provider location
                 </div>
@@ -62,22 +62,23 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
                   lng={parseFloat(userIpLocation.longitude)}
                   jawgAccessToken={env.JAWG_ACCESS_TOKEN}
                 />
-              </div>
-              <div>
+              </li>
+              <li>
                 <div className="text-sm font-bold">Country</div>
                 <div className="text-lg">{userIpLocation.country_name}</div>
-                <div className="relative h-20 max-w-16 mx-auto">
+                <figure className="relative h-20 max-w-16 mx-auto">
                   <Image
                     alt={`${userIpLocation.country_name} flag`}
                     src={userIpLocation.country_flag}
                     fill={true}
+                    sizes="63px"
                     className="object-contain"
                   />
-                </div>
-              </div>
-              <div>
+                </figure>
+              </li>
+              <li>
                 <div className="text-sm font-bold">Language</div>
-                <div className="text-lg flex items-center justify-center gap-2 flex-wrap sm:justify-start">
+                <div className="text-lg flex items-center gap-2 flex-wrap">
                   {' '}
                   {ipDataDetails.languages[0].name}
                   {ipDataDetails.languages[0].name.toLowerCase() !==
@@ -93,9 +94,9 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
                     </>
                   )}
                 </div>
-              </div>
-            </div>
-          </div>
+              </li>
+            </ul>
+          </article>
         </Card>
         {/*
         <ul>
