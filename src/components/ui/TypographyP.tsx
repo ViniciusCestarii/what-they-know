@@ -1,10 +1,10 @@
 import cn from '@/utils/cn'
 
-interface TypographyPProps extends React.HTMLAttributes<HTMLHeadElement> {
-  children: React.ReactNode
-}
-
-const TypographyP = ({ children, className, ...props }: TypographyPProps) => {
+const TypographyP = ({
+  children,
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLHeadElement>) => {
   return (
     <p
       {...props}

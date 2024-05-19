@@ -1,10 +1,10 @@
 import cn from '@/utils/cn'
 
-interface TypographyH1Props extends React.HTMLAttributes<HTMLHeadElement> {
-  children: React.ReactNode
-}
-
-const TypographyH1 = ({ children, className, ...props }: TypographyH1Props) => {
+const TypographyH1 = ({
+  children,
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLHeadElement>) => {
   return (
     <h1
       {...props}
