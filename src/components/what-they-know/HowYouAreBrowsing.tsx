@@ -109,8 +109,8 @@ const HowYouAreBrowsing = async ({ ip }: HowYouAreBrowsingProps) => {
                 <Card className="p-0 h-20 w-full">
                   <Image
                     className="rounded-md object-cover h-full w-full"
-                    src="https://source.unsplash.com/random/1000x1000/?dangerous "
-                    alt="duck"
+                    src="https://source.unsplash.com/random/1000x1000/?hacker"
+                    alt="hacker"
                     height={1000}
                     width={1000}
                   />

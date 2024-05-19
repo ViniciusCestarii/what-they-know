@@ -98,54 +98,6 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
             </ul>
           </article>
         </Card>
-        {/*
-        <ul>
-          <li>City: {userIpLocation.city}</li>
-          <li>Region: {userIpLocation.state_prov}</li>
-          <li>Country: {userIpLocation.country_name}</li>
-          <li>
-            You probably speak: {ipDataDetails.languages[0].name} |{' '}
-            {ipDataDetails.languages[0].native}
-          </li>
-        </ul>
-      </section>
-      <section className="flex flex-col">
-        <h2>How you are browsing</h2>
-        <ConfidenceBar confidence="Very High" className="ml-auto" />
-        <ul>
-          <li>IP: {ipDataDetails.ip}</li>
-          <li>City: {userIpLocation.city}</li>
-          <li>Region: {userIpLocation.state_prov}</li>
-          <li>Country: {userIpLocation.country_name}</li>
-          <li>Postal: {ipDataDetails.postal}</li>
-          <li>Timezone: {userIpLocation.time_zone.name}</li>
-          <li>ASN: {ipDataDetails.asn.asn}</li>
-          <li>ASN Name: {ipDataDetails.asn.name}</li>
-          <li>ASN Domain: {ipDataDetails.asn.domain}</li>
-          <li>ASN Route: {ipDataDetails.asn.route}</li>
-          <li>ASN Type: {ipDataDetails.asn.type}</li>
-          <li>
-            Are you a threat:{' '}
-            {ipDataDetails.threat.is_known_abuser ||
-            ipDataDetails.threat.is_threat ||
-            ipDataDetails.threat.is_known_attacker
-              ? "Yes, you're a threat"
-              : 'No'}
-          </li>
-          <li>Proxy: {ipDataDetails.threat.is_proxy ? 'True' : 'False'}</li>
-          {ipDataDetails.threat.is_proxy ||
-            ipDataDetails.threat.is_tor ||
-            (ipDataDetails.threat.is_anonymous && (
-              <Image
-                className="rounded-full mx-auto max-w-60 max-h-60"
-                src="/vpn.jpeg"
-                width={1024}
-                height={1024}
-                alt="lock representing anonymity"
-              />
-            ))}
-        </ul>
-          */}
       </section>
     </>
   )

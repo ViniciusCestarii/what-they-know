@@ -13,7 +13,7 @@ interface WhereYouWorkProps {
 const WhereYouWork = async ({ ip }: WhereYouWorkProps) => {
   const userCompanyInfo = await fetchUserWork()
 
-  if (!userCompanyInfo?.company) {
+  if (!userCompanyInfo?.company?.name) {
     return null
   }
 
@@ -53,7 +53,7 @@ const WhereYouWork = async ({ ip }: WhereYouWorkProps) => {
                 <Image
                   className="rounded-md object-cover h-full w-full"
                   src={`https://source.unsplash.com/random/1000/?${userCompanyInfo.company.industry.split(' ')[0]}`}
-                  alt="duck"
+                  alt={userCompanyInfo.company.industry.split(' ')[0]}
                   height={1000}
                   width={1000}
                 />
