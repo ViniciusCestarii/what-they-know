@@ -1,17 +1,31 @@
-import React from 'react'
+'use client'
+import React, { useEffect } from 'react'
 import ConfidenceBar from '../ui/ConfidenceBar'
 import TypographyH2 from '../ui/TypographyH2'
 import Card from '../ui/Card'
 import { fetchUserWork } from '@/fetch/fetchUserWork'
 import Badge from '../ui/Badge'
 import Image from 'next/image'
+import { Company } from '@/types/companyTypes'
 
 interface WhereYouWorkProps {
   ip: string
+  EPSILON6SENSE_API_KEY: string
 }
 
-const WhereYouWork = async ({ ip }: WhereYouWorkProps) => {
-  const userCompanyInfo = await fetchUserWork()
+const WhereYouWork = ({ ip, EPSILON6SENSE_API_KEY }: WhereYouWorkProps) => {
+  const [userCompanyInfo, setUserCompanyInfo] = React.useState<Company | null>(
+    null,
+  )
+
+  useEffect(() => {
+    const getUserCompanyInfo = async () => {
+      const userCompanyInfo = await fetchUserWork(EPSILON6SENSE_API_KEY)
+      setUserCompanyInfo(userCompanyInfo)
+    }
+
+    getUserCompanyInfo()
+  }, [EPSILON6SENSE_API_KEY])
 
   if (!userCompanyInfo?.company?.name) {
     return null

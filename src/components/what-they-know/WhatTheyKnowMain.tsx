@@ -5,6 +5,7 @@ import WhereYouAre from './WhereYouAre'
 import { fetchUserIp } from '@/fetch/fetchUserIp'
 import HowYouAreBrowsing from './HowYouAreBrowsing'
 import WhereYouWork from './WhereYouWork'
+import { env } from '@/utils/env'
 
 export interface WhatTheyKnowMainProps {
   ip?: string
@@ -15,8 +16,8 @@ const WhatTheyKnowMain = async ({ ip: ipProp }: WhatTheyKnowMainProps) => {
   return (
     <>
       <WhereYouAre ip={ip} />
-      <WhereYouWork ip={ip} />
       <HowYouAreBrowsing ip={ip} />
+      <WhereYouWork ip={ip} EPSILON6SENSE_API_KEY={env.EPSILON6SENSE_API_KEY} />
     </>
   )
 }
