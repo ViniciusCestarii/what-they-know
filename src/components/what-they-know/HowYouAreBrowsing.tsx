@@ -105,7 +105,7 @@ const HowYouAreBrowsing = async ({ ip }: HowYouAreBrowsingProps) => {
                   {ipDataDetails.threat.is_threat ? 'Yes' : 'No'}
                 </div>
               </li>
-              <li>
+              <li className="col-span-3 sm:col-span-1">
                 <Card className="p-0 h-20 w-full">
                   <Image
                     className="rounded-md object-cover h-full w-full"
