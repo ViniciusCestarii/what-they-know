@@ -9,8 +9,8 @@ L.Icon.Default.mergeOptions({
   iconRetinaUrl: '/green-pin.png',
   iconUrl: '/green-pin.png',
   shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-  shadowSize: [50, 64], // size of the shadow
-  shadowAnchor: [14, 68], // the same for the shadow
+  shadowSize: [50, 64],
+  shadowAnchor: [14, 68],
 })
 
 interface LeafletMapProps {
