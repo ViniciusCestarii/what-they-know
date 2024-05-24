@@ -24,17 +24,30 @@ Check out the live demo of What They Know at [what-they-know.vercel.app](https:/
 - Raises awareness about online privacy and data collection practices.
 - Utilizes server-side rendering (SSR) for improved performance and SEO.
 - Integrates 6sense API to gather additional data insights.
-- Utilizes IP API to retrieve user's IP information.
+- Utilizes IPDATA API to retrieve user's IP information.
 
 ## Usage
 
 1. Visit the live demo website: [what-they-know.vercel.app](https://what-they-know.vercel.app).
-2. Navigate through different websites.
-3. Observe the insights provided by the tool regarding data collection practices.
+2. Check what info websites can collect from you through your navigation.
+3. Observe different IPs.
 
 ## Installation
 
 To run the project locally, follow these steps:
 
 1. Clone the repository:
+   ```
+   https://github.com/ViniciusCestarii/what-they-know.git
+   ```
+2. Create a .env.local file:
+   - Linux:
+   ```bash
+   cp .env.example .env.local
+   ```
+   - Windows:
+   ```cmd
+   copy .env.example .env.local
+   ```
+3. Change the variables in .env.local to match your own configuration.
 
