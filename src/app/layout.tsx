@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Toaster } from 'sonner'
+import { Analytics } from '@vercel/analytics/react'
 
 export const metadata: Metadata = {
   title: 'What They Know',
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body className=" flex flex-col bg-background min-h-screen  p-4 p-y6 text-primary max-w-default mx-auto">
         <Toaster />
         <main>{children}</main>
+        <Analytics />
       </body>
     </html>
   )
