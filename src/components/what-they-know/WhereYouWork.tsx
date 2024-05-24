@@ -9,11 +9,10 @@ import Image from 'next/image'
 import { Company } from '@/types/companyTypes'
 
 interface WhereYouWorkProps {
-  ip: string
   EPSILON6SENSE_API_KEY: string
 }
 
-const WhereYouWork = ({ ip, EPSILON6SENSE_API_KEY }: WhereYouWorkProps) => {
+const WhereYouWork = ({ EPSILON6SENSE_API_KEY }: WhereYouWorkProps) => {
   const [userCompanyInfo, setUserCompanyInfo] = React.useState<Company | null>(
     null,
   )
@@ -43,7 +42,16 @@ const WhereYouWork = ({ ip, EPSILON6SENSE_API_KEY }: WhereYouWorkProps) => {
             <TypographyH2 className="capitalize flex items-center gap-2">
               Where you work
             </TypographyH2>
-            <Badge className="ml-auto sm:ml-0">IP: {ip}</Badge>
+            <Badge className="ml-auto sm:ml-0">
+              <a
+                href="https://api.6sense.com/docs/#introduction"
+                className="hover:underline"
+                target="_blank"
+                rel="noreferrer"
+              >
+                6sense API
+              </a>
+            </Badge>
           </div>
           <ul className="grid grid-cols-3 sm:grid-cols-4 gap-4">
             <li>

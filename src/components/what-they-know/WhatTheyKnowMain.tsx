@@ -17,7 +17,7 @@ const WhatTheyKnowMain = async ({ ip: ipProp }: WhatTheyKnowMainProps) => {
     <>
       <WhereYouAre ip={ip} />
       <HowYouAreBrowsing ip={ip} />
-      <WhereYouWork ip={ip} EPSILON6SENSE_API_KEY={env.EPSILON6SENSE_API_KEY} />
+      <WhereYouWork EPSILON6SENSE_API_KEY={env.EPSILON6SENSE_API_KEY} />
     </>
   )
 }
