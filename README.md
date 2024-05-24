@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# What They Know 🔒
 
-## Getting Started
+## Overview
 
-First, run the development server:
+What They Know is a web tool designed to enlighten users about the data collected by websites solely through navigation. This tool aims to increase awareness about online privacy and data collection practices.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Live Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Check out the live demo of What They Know at [what-they-know.vercel.app](https://what-they-know.vercel.app).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Bun
+- React
+- Next.js (SSR)
+- Leaflet
+- Tailwind CSS
+- 6sense API
+- IPDATA API
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- Provides insights into the data collected by websites during navigation.
+- Raises awareness about online privacy and data collection practices.
+- Utilizes server-side rendering (SSR) for improved performance and SEO.
+- Integrates 6sense API to gather additional data insights.
+- Utilizes IPDATA API to retrieve user's IP information.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Visit the live demo website: [what-they-know.vercel.app](https://what-they-know.vercel.app).
+2. Check what info websites can collect from you through your navigation.
+3. Observe different IPs.
 
-## Deploy on Vercel
+## Installation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To run the project locally, follow these steps:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Clone the repository:
+   ```
+   https://github.com/ViniciusCestarii/what-they-know.git
+   ```
+2. Create a .env.local file:
+   - Linux:
+   ```bash
+   cp .env.example .env.local
+   ```
+   - Windows:
+   ```cmd
+   copy .env.example .env.local
+   ```
+3. Change the variables in .env.local to match your own configuration.
+
