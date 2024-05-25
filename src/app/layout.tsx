@@ -4,8 +4,35 @@ import { Analytics } from '@vercel/analytics/react'
 import Footer from '@/components/what-they-know/Footer'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://what-they-know.vercel.app/'),
   title: 'What They Know',
-  description: 'Dicover what they know about you using your IP address',
+  description: 'Dicover what they know about you when you navigate the web.',
+  keywords: [
+    'Vinicius Cestarii',
+    'iP',
+    'security',
+    'privacy',
+    'web',
+    'browsing',
+    'data',
+    'analytics',
+    'analytics',
+  ],
+  icons: '/icon.png',
+  twitter: {
+    creator: 'vinicius-cestari',
+    creatorId: 'vinicius-cestari',
+    images: '/cover.jpg',
+    title: 'What They Know',
+    description: 'Dicover what they know about you when you navigate the web.',
+  },
+  openGraph: {
+    url: 'https://what-they-know.vercel.app/',
+    images: '/cover.jpg',
+    title: 'What They Know',
+    description: 'Dicover what they know about you when you navigate the web.',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({

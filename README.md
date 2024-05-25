@@ -51,3 +51,8 @@ To run the project locally, follow these steps:
    ```
 3. Change the variables in .env.local to match your own configuration.
 
+## Credits and Acknowledgements
+
+I would like to thank the following photographers from Unsplash for providing the beautiful images used in this project:
+
+- Cover photo by [Moritz Erken](https://unsplash.com/@moritzerken) on [Unsplash](https://unsplash.com/pt-br/fotografias/computador-portatil-preto-ligado-com-tela-verde-QHDVlXhIacg)
