@@ -7,6 +7,9 @@ import { fetchUserWork } from '@/fetch/fetchUserWork'
 import Badge from '../ui/Badge'
 import Image from 'next/image'
 import { Company } from '@/types/companyTypes'
+import { Info } from 'lucide-react'
+import TypographyP from '../ui/TypographyP'
+import Tooltip from '../ui/Tooltip'
 
 interface WhereYouWorkProps {
   EPSILON6SENSE_API_KEY: string
@@ -40,7 +43,14 @@ const WhereYouWork = ({ EPSILON6SENSE_API_KEY }: WhereYouWorkProps) => {
         <article className="space-y-4">
           <div className="flex items-center justify-between flex-wrap gap-2">
             <TypographyH2 className="capitalize flex items-center gap-2">
-              Where you work
+              Where you work{' '}
+              <Info className="text-primary" id="where-you-work-icon" />
+              <Tooltip anchorSelect="#where-you-work-icon" clickable>
+                <TypographyP className="normal-case">
+                  This info is gathered trough many factor such as cookies,
+                  tracking, historical data, not solely by IP Address.
+                </TypographyP>
+              </Tooltip>
             </TypographyH2>
             <Badge className="ml-auto sm:ml-0">
               <a

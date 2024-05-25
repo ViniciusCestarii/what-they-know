@@ -77,10 +77,8 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
                 </figure>
               </li>
               <li>
-                <div className="text-sm font-bold">Language</div>
-                <div className="text-lg flex items-center gap-2 flex-wrap">
-                  {' '}
-                  {ipDataDetails.languages[0].name}
+                <div className="text-sm font-bold flex flex-wrap gap-1">
+                  Language{' '}
                   {ipDataDetails.languages[0].name.toLowerCase() !==
                     'english' && (
                     <>
@@ -93,6 +91,10 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
                       </Tooltip>
                     </>
                   )}
+                </div>
+                <div className="text-lg flex items-center gap-2 flex-wrap">
+                  {' '}
+                  {ipDataDetails.languages[0].name}
                 </div>
               </li>
             </ul>
