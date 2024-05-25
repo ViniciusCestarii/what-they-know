@@ -74,7 +74,7 @@ const WhereYouAre = async ({ ip }: WhereYouAreProps) => {
               </figure>
             </li>
             <li>
-              <div className="text-sm font-bold flex items-center flex-wrap gap-1">
+              <div className="text-sm font-bold flex items-center gap-1">
                 Language{' '}
                 {ipDataDetails.languages[0].name.toLowerCase() !== 'englis' && (
                   <>
