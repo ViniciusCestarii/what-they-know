@@ -51,6 +51,13 @@ To run the project locally, follow these steps:
    ```
 3. Change the variables in .env.local to match your own configuration.
 
+4. Run command to start:
+```bash
+npm run start
+```
+
+5. Open [localhost](http://localhost:3000/)
+
 ## Credits and Acknowledgements
 
 I would like to thank the following photographers from Unsplash for providing the beautiful images used in this project:
